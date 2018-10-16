@@ -1,14 +1,13 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
+from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
-import unittest
 
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
     '''  тест нового посетителя  '''
     def setUp(self):
         '''установка '''
@@ -29,7 +28,7 @@ class NewVisitorTest(unittest.TestCase):
         '''тест - можно начать список и получить его позже '''
         # Эдит слышала про новое онлайн-приложение со списком
         # неотложных дел. Она решает посетить домашнюю страницу.
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url )
 
         # Она видит, что заголовок и шапка страницы говоряи
         # о списках неотложных дел
@@ -52,7 +51,7 @@ class NewVisitorTest(unittest.TestCase):
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
 
-        self.check_for_row_in_list_table('1: Купить павлиньи перья')
+        self.check_for_row_in_list_table('1 Купить павлиньи перья')
 
         # Текстовое поле по-прежнему приглашает ее добавить еще один элемент
         # Она вводит "Сделать мушку из павлиньих перьев"
@@ -63,8 +62,8 @@ class NewVisitorTest(unittest.TestCase):
         time.sleep(1)
 
         # Страница снова обновляется, и теперь показывает оба элемента ее списка
-        self.check_for_row_in_list_table('1: купить павлиньи перья')
-        self.check_for_row_in_list_table('2: Сделать мушку их павлиньих перьев')
+        self.check_for_row_in_list_table('1 Купить павлиньи перья')
+        self.check_for_row_in_list_table('2 Сделать мушку из павлиньих перьев')
 
         # Эдит интересно, запомнит ли сайт ее список. Далее она видит, что
         # сайт сгенерировал для нее уникальный URL-адрес - об этом
@@ -74,5 +73,3 @@ class NewVisitorTest(unittest.TestCase):
 
         # Удовлетворенная, она ложится спать.
 
-if __name__=='__main__':
-    unittest.main(warnings='ignore')
