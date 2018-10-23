@@ -1,10 +1,10 @@
 <html>
     <head>
-        <title>Start a new To-Do lists</title>
+        <title>To-Do lists</title>
     </head>
     <body>
-        <h1>Start a new  To-Do lists</h1>
-        <form method="POST">
+        <h1>Your To-Do lists</h1>
+        <form method="POST" action="/">
             <input name="item_text" id="id_new_item" placeholder="Enter a to-do item"/>
             {% csrf_token %}
         </form>

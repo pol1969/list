@@ -109,7 +109,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         ## Мы обеспечиваем новый сеанс браузера, тем самым обеспечивая, чтобы никакая
         ## информация от Эдит не прошла черезданные cookie и пр.
-        self.browser.quite()
+        self.browser.quit()
         self.browser = webdriver.Firefox()
 
         # Фрэнсис посещает домашнюю страницу. Нет никаких признаков сриска Эдит
