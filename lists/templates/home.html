@@ -1,20 +1,5 @@
-<html>
-    <head>
-        <title>Start a new To-Do lists</title>
-    </head>
-    <body>
-        <h1>Start a new  To-Do lists</h1>
-        <form method="POST" "/lists/new">
-            <input name="item_text" id="id_new_item" placeholder="Enter a to-do item"/>
-            {% csrf_token %}
-        </form>
-        <table id="id_list_table">
-            {% for item in items %}
+{% extends 'base.html' %}
 
-            <tr><td>{{ forloop.counter}} {{ item.text }} </td></tr>
+{% block header_text %}Start a new To-Do list{% endblock %}
 
-            {% endfor %}
-        </table>
-    </body>
-
-</html>
+{% block form_action %}/lists/new{% endblock %}
