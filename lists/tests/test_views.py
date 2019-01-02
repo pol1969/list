@@ -1,6 +1,7 @@
 from django.test import TestCase
 from lists.models import Item, List
 from django.utils.html import escape
+from lists.forms import ItemForm
 
 # Create your tests here.
 
@@ -14,6 +15,11 @@ class HomePageTest(TestCase):
 
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'home.html')
+
+    def test_home_page_uses_item_form(self):
+        '''тест: домашняя страница использует форму для элемента '''
+        response = self.client.get('/')
+        self.assertIsInstance(response.context['form'], ItemForm)
 
 #    def test_can_save_a_POST_request(self):
 #        '''тест: можно сохранить post-запрос'''
